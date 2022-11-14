@@ -14,8 +14,11 @@ import {
 import { RFValue } from "react-native-responsive-fontsize";
 import DropDownPicker from "react-native-dropdown-picker";
 
-import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+
 
 let customFonts = {
   "Bubblegum-Sans": require("../assets/fonts/BubblegumSans-Regular.ttf"),
@@ -41,9 +44,8 @@ export default class CreateStory extends Component {
   }
 
   render() {
-    if (!this.state.fontsLoaded) {
-      return <AppLoading />;
-    } else {
+    if (this.state.fontsLoaded) {
+      SplashScreen.hideAsync();
       let preview_images = {
         image_1: require("../assets/story_image_1.png"),
         image_2: require("../assets/story_image_2.png"),
